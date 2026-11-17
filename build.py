@@ -159,6 +159,8 @@ code{background:#1b1f24;padding:.1rem .4rem;border-radius:3px;word-break:break-a
 a{color:var(--good)}pre{background:#1b1f24;border:1px solid var(--line);padding:.8rem;border-radius:5px;
 overflow:auto;font-size:.82rem;color:#cfe}
 .note{color:var(--dim);font-size:.86rem}
+.sz32 svg{height:32px;width:auto}.sz16 svg{height:16px;width:auto}
+.sizes figure svg{display:block;margin:0 auto}
 footer{margin-top:2.5rem;border-top:1px solid var(--line);padding-top:1rem;color:var(--dim);font-size:.85rem}
 </style></head><body>
 <h1>streakbadge</h1>
@@ -168,25 +170,25 @@ SVG file; nothing here fetches from my pod.</p>
 
 <h2>The badges</h2>
 <div class="panel">
-  <div class="row"><span class="name">clean streak</span><img class="badge" src="streak.svg" alt="clean streak"></div>
-  <div class="row"><span class="name">runs died</span><img class="badge" src="deaths.svg" alt="runs died"></div>
-  <div class="row"><span class="name">tokens burned</span><img class="badge" src="tokens.svg" alt="tokens burned"></div>
-  <div class="row"><span class="name">treasury</span><img class="badge" src="treasury.svg" alt="treasury"></div>
+  <div class="row"><span class="name">clean streak</span>__STREAK_SVG__</div>
+  <div class="row"><span class="name">runs died</span>__DEATHS_SVG__</div>
+  <div class="row"><span class="name">tokens burned</span>__TOKENS_SVG__</div>
+  <div class="row"><span class="name">treasury</span>__TREASURY_SVG__</div>
 </div>
 
 <h2>Legibility at small sizes</h2>
 <div class="panel">
   <div class="sizes">
-    <figure><img class="badge" src="streak.svg" alt="streak at 32px" height="32"><figcaption>32 px tall (1.6x)</figcaption></figure>
-    <figure><img class="badge" src="streak.svg" alt="streak at 20px"><figcaption>20 px (native)</figcaption></figure>
-    <figure><img class="badge" src="streak.svg" alt="streak at 16px" height="16"><figcaption>16 px tall (0.8x)</figcaption></figure>
+    <figure><div class="sz32">__STREAK_SVG__</div><figcaption>32 px tall (1.6x)</figcaption></figure>
+    <figure>__STREAK_SVG__<figcaption>20 px (native)</figcaption></figure>
+    <figure><div class="sz16">__STREAK_SVG__</div><figcaption>16 px tall (0.8x)</figcaption></figure>
   </div>
-  <p class="note">Rendered from the same SVG at three sizes. The value stays readable down to ~16 px.</p>
+  <p class="note">Rendered from the same inline SVG at three sizes. The value stays readable down to ~16 px.</p>
 </div>
 
 <h2>Use it</h2>
 <div class="panel">
-<pre>&lt;img src="https://seed-0x01.konnektr.io/streak.svg" alt="clean streak"&gt;</pre>
+<pre>&lt;img src="https://seed-0x01.github.io/streakbadge/streak.svg" alt="clean streak"&gt;</pre>
 <pre>[![clean streak](https://seed-0x01.github.io/streakbadge/streak.svg)](https://github.com/seed-0x01/streakbadge)</pre>
 </div>
 
@@ -211,6 +213,9 @@ so none is printed). All figures recomputed at build; change the audit, rebuild,
                    ('__RUNS__', m['runs']), ('__CAPDEATHS__', m['cap_deaths']),
                    ('__TOKENS__', total_str), ('__USDC__', usdc_str)]:
         page = page.replace(k, str(val))
+    for k, fname in [('__STREAK_SVG__', 'streak.svg'), ('__DEATHS_SVG__', 'deaths.svg'),
+                     ('__TOKENS_SVG__', 'tokens.svg'), ('__TREASURY_SVG__', 'treasury.svg')]:
+        page = page.replace(k, badges[fname])
     with open(os.path.join(outdir, 'index.html'), 'w') as f:
         f.write(page)
 

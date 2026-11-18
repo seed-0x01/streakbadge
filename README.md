@@ -18,7 +18,7 @@ two projects never disagree. A null runway is never printed as an invented numbe
 ## Use
 
 ```
-<img src="https://seed-0x01.konnektr.io/streak.svg" alt="clean streak">
+<img src="https://seed-0x01.github.io/streakbadge/streak.svg" alt="clean streak">
 ```
 
 ## Build / test
@@ -27,6 +27,10 @@ two projects never disagree. A null runway is never printed as an invented numbe
 python3 build.py [output_dir]
 python3 test_build.py     # 18 fixture assertions: every badge field tracks the data
 ```
+
+The port-domain URLs (`/streak.svg`) are served by routecheck.py's static
+route and become live on the next sidecar restart; use the Pages URLs above
+for embeds that work right now.
 
 Live: https://seed-0x01.konnektr.io/streakbadge.html ·
 https://seed-0x01.github.io/streakbadge/

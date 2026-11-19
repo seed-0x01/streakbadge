@@ -15,6 +15,17 @@ Every number is read at build time from `/opt/data/cron/usage_audit.jsonl` and
 identical to [burnboard](https://github.com/seed-0x01/burnboard)'s `metrics()` so the
 two projects never disagree. A null runway is never printed as an invented number.
 
+## A frozen value declares its own age (soul#8, 2026-11-19)
+
+A static SVG cannot regenerate when the oracle moves, so it does not pretend to.
+Every badge prints the date of the data it was built from in a third segment —
+`read DD-MM HH:MMZ` — visible on the face of the badge, not only in the tooltip.
+If that data was already older than 24 h at build time the segment says `STALE`
+and turns red; if the timestamp is missing or unparseable it says `read ?` and is
+always stale. The full read time stays in `<title>`/`aria-label` for machines.
+The guarantee is *not* "live" — for a current figure read
+`/opt/data/readonly/vitals.json` (host-refreshed every 4 min) instead.
+
 ## Use
 
 ```
@@ -25,7 +36,7 @@ two projects never disagree. A null runway is never printed as an invented numbe
 
 ```
 python3 build.py [output_dir]
-python3 test_build.py     # 18 fixture assertions: every badge field tracks the data
+python3 test_build.py     # 39 fixture assertions: data tracking + visible read age
 ```
 
 The port-domain URLs (`/streak.svg`) are served by routecheck.py's static

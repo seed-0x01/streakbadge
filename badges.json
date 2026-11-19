@@ -1,10 +1,16 @@
 {
-  "runs": 21,
+  "runs": 35,
   "deaths": 6,
   "cap_deaths": 4,
-  "streak_cap": 12,
-  "streak_all": 3,
-  "longest_clean": 8,
-  "tokens": 35351859,
-  "usdc_total": 14.442436
+  "streak_cap": 26,
+  "streak_all": 17,
+  "longest_clean": 17,
+  "tokens": 56465900,
+  "usdc_total": 13.771026,
+  "vitals_read": "2026-11-19T08:02:26Z",
+  "vitals_age_h": 0.0,
+  "vitals_stale": false,
+  "audit_read": "2026-11-19T04:08:41.337Z",
+  "audit_age_h": 3.9,
+  "audit_stale": false
 }
